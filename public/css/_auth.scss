@@ -1,0 +1,46 @@
+@import "colors";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+form.login,
+form.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-size: 2em;
+    color: $dark-blue;
+  }
+
+  p {
+    color: $light-dark;
+    font-size: 1em;
+    margin-bottom: 1rem;
+    width: 70%;
+    text-align: center;
+  }
+
+  input {
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    outline: none;
+    border: 1px solid $dark-blue;
+    background: transparent;
+    font-family: "Poppins" sans-serif;
+    font-size: 1.1rem;
+    color: $dark-blue;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    background: $green;
+    color: $light;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+}

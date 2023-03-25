@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="az">
+  <%- include("partials/_head") %>
+
+  <body>
+    <%- include("partials/_navbar") %>
+
+    <!-- SIGNUP -->
+
+    <section>
+      <form class="signup" action="/signup" method="post">
+        <h2>Qeydiyyat</h2>
+        <p>Yeni hesab yaratmaq üçün məlumatları doldurun</p>
+        <input name="name" type="text" placeholder="Ad" required />
+        <input name="surname" type="text" placeholder="Soyad" required />
+        <input
+          name="username"
+          type="text"
+          placeholder="İstifadəçi adı"
+          required
+        />
+        <input name="email" type="email" placeholder="Email" required />
+        <input name="password" type="password" placeholder="Şifrə" required />
+        <button type="submit">Təsdiqlə</button>
+      </form>
+    </section>
+
+    <script src="./js/navbar.js"></script>
+  </body>
+</html>

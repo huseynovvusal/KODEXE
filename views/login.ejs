@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="az">
+  <%- include("partials/_head") %>
+
+  <body>
+    <%- include("partials/_navbar") %>
+
+    <!-- LOGIN -->
+
+    <section>
+      <form class="login" action="/login" method="post">
+        <h2>Giriş</h2>
+        <p>Hesabınıza giriş etmək üçün məlumatları doldurun</p>
+        <input
+          name="username"
+          type="text"
+          placeholder="İstifadəçi adı"
+          required
+        />
+        <input name="password" type="password" placeholder="Şifrə" required />
+        <button type="submit">Təsdiqlə</button>
+      </form>
+    </section>
+
+    <script src="./js/navbar.js"></script>
+  </body>
+</html>

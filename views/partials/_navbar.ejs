@@ -1,0 +1,31 @@
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <nav>
+      <div class="left">
+        <button class="nav-button"><i class="bx bx-command"></i></button>
+        <img class="logo" src="./img/kodexe.svg" alt="kodexe" />
+
+        <span class="v-line" style="height: 20px"></span>
+
+        <ul class="nav-list">
+          <li><a class="<%= link === "home" ? "active" : "" %>" href="/" class="active">Ev</a></li>
+          <li><a class="<%= link === "problemset" ? "active" : "" %>" href="/problemset">Məsələlər</a></li>
+          <li><a class="<%= link === "about" ? "active" : "" %>" href="/about">Haqqımızda</a></li>
+          <li><a class="<%= link === "discuss" ? "active" : "" %>" href="/discuss">Müzakirə</a></li>
+        </ul>
+      </div>
+
+      <div class="right">
+        <!-- <button class="notifications"><i class="bx bx-bell"></i></button>
+          <button class="profile">
+            <img src="./img/profile_photos/profile-1.jpeg" alt="User" />
+          </button> -->
+
+        <!-- IF NOT LOGINNED -->
+        <a class="auth-link login" href="/login">Giriş</a>
+        <a class="auth-link" href="/signup">Qeydiyyat</a>
+      </div>
+    </nav>
+  </div>
+</header>

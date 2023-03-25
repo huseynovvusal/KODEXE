@@ -1,0 +1,54 @@
+@import "colors";
+
+section#problems {
+  padding: 2rem 0;
+  align-items: flex-start;
+
+  .container {
+    .problem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1rem 0;
+      padding: 2rem 2rem;
+      border-radius: 0.25rem;
+      background: $white;
+      box-shadow: 0 0 1rem $dark-shadow;
+      border: 1px solid $light;
+
+      h3 {
+        font-size: 1.5em;
+        font-weight: 600;
+        color: $dark-blue;
+      }
+
+      p {
+        font-size: 1em;
+        color: $light-dark;
+      }
+
+      a {
+        text-decoration: none;
+        color: $white;
+        background: $green;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        font-size: 1em;
+      }
+
+      span {
+        font-weight: 500;
+
+        &.easy {
+          color: $easy;
+        }
+        &.medium {
+          color: $medium;
+        }
+        &.hard {
+          color: $hard;
+        }
+      }
+    }
+  }
+}
