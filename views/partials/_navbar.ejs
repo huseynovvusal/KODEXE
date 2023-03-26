@@ -17,14 +17,17 @@
       </div>
 
       <div class="right">
-        <!-- <button class="notifications"><i class="bx bx-bell"></i></button>
-          <button class="profile">
-            <img src="./img/profile_photos/profile-1.jpeg" alt="User" />
-          </button> -->
+        <% if(user){ %>
+        <button class="notifications"><i class="bx bx-bell"></i></button>
+        <a class="profile" href="/users/huseynovvusal">
+          <img src="<%= user.image %>" alt="User" />
+        </a>
+        <% } else{ %>
 
         <!-- IF NOT LOGINNED -->
         <a class="auth-link login" href="/login">Giriş</a>
         <a class="auth-link" href="/signup">Qeydiyyat</a>
+        <% } %>
       </div>
     </nav>
   </div>
