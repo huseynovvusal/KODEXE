@@ -35,18 +35,20 @@ class AuthMiddleware {
             console.log(error);
             res.locals.user = null;
           } else {
-            // console.log(decoded);
             const user = await User.findById(decoded.userId);
 
-            res.locals.user = user;
-
-            // console.log(res.locals.user);
+            if (user) {
+              res.locals.user = user;
+            } else {
+              res.clearCookie("jwt");
+            }
 
             next();
           }
         });
       } else {
         res.locals.user = null;
+        res.clearCookie("jwt");
         next();
       }
     } catch (error) {
@@ -62,6 +64,23 @@ class AuthMiddleware {
       const token = req.cookies.jwt;
 
       if (!token) {
+        next();
+      } else {
+        res.redirect("/");
+      }
+    } catch (error) {
+      res.json({
+        success: false,
+        error: error,
+      });
+    }
+  }
+
+  static async blockNotLoggedInUser(req, res, next) {
+    try {
+      const token = req.cookies.jwt;
+
+      if (token) {
         next();
       } else {
         res.redirect("/");

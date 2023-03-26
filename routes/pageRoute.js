@@ -2,6 +2,7 @@ import express from "express";
 import PageController from "../controllers/pageController.js";
 import UserController from "../controllers/userController.js";
 import AuthMiddleware from "../middlewares/authMiddleware.js";
+import problemsetRoute from "./problemsetRoute.js";
 
 const router = express.Router();
 
@@ -24,7 +25,7 @@ const userController = new UserController();
 router.post(
   "/signup",
   AuthMiddleware.blockLoggedInUser,
-  userController.createUser
+  userController.signUpUser
 );
 router.post(
   "/login",
@@ -32,6 +33,13 @@ router.post(
   userController.loginUser
 );
 
-router.get("/problemset", PageController.getProblemsetPage);
+// Verificate
+router.get(
+  "/verification/:token",
+  AuthMiddleware.blockLoggedInUser,
+  userController.verificate
+);
+
+router.use("/problemset", problemsetRoute);
 
 export default router;

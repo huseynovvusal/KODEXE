@@ -34,7 +34,7 @@ app.get("*", AuthMiddleware.checkUser);
 app.use("/", pageRoute);
 
 // 404
-app.use(function (req, res) {
+app.use((req, res) => {
   res.status(404).render("404");
 });
 

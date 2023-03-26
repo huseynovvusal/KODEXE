@@ -413,25 +413,20 @@ section#problem .container .send {
 }
 
 #err404 {
-  height: 100%;
-  width: 100%;
   background: url("../img/nodes.svg"), linear-gradient(0deg, rgba(72, 243, 129, 0.1), #fff);
   background-size: cover;
   background-position: top;
   display: flex;
   flex-direction: column;
-}
-#err404 header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  align-items: center;
 }
 #err404 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: auto 0;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 #err404 .container h1,
 #err404 .container h2 {
