@@ -7,13 +7,31 @@ const router = express.Router();
 
 // GET
 router.get("/", PageController.getIndexPage);
-router.get("/signup", PageController.getSignupPage);
-router.get("/login", PageController.getLoginPage);
+router.get(
+  "/signup",
+  AuthMiddleware.blockLoggedInUser,
+  PageController.getSignupPage
+);
+router.get(
+  "/login",
+  AuthMiddleware.blockLoggedInUser,
+  PageController.getLoginPage
+);
 
 // POST
 const userController = new UserController();
 
-router.post("/signup", userController.createUser);
-router.post("/login", userController.loginUser);
+router.post(
+  "/signup",
+  AuthMiddleware.blockLoggedInUser,
+  userController.createUser
+);
+router.post(
+  "/login",
+  AuthMiddleware.blockLoggedInUser,
+  userController.loginUser
+);
+
+router.get("/problemset", PageController.getProblemsetPage);
 
 export default router;

@@ -17,10 +17,12 @@ section#home {
       color: $dark-blue;
       font-size: 3em;
       text-align: center;
+      animation: opening 1s;
 
       span {
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke: 1px;
+        -webkit-text-stroke-color: $dark-blue;
       }
     }
     p {
@@ -29,6 +31,18 @@ section#home {
       font-size: 1em;
       color: $light-dark;
       padding: 1em 0;
+      animation: opening 1s;
+    }
+
+    @keyframes opening {
+      from {
+        opacity: 0;
+        transform: translateY(40%) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .copyright {

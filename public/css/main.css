@@ -43,7 +43,7 @@ header nav .left .nav-button i {
   font-size: 1.75em;
 }
 header nav .left .logo {
-  height: 1.5rem;
+  height: 1.5em;
   margin-right: 1rem;
   z-index: 100;
   padding-left: 1rem;
@@ -108,11 +108,6 @@ header nav .right button {
   background: none;
   cursor: pointer;
 }
-header nav .right .profile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 header nav .right .auth-link {
   text-decoration: none;
   font-weight: 400;
@@ -130,12 +125,15 @@ header nav .right .auth-link:hover {
 header nav .right .profile {
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 header nav .right .profile img {
-  width: 40px;
+  width: 2em;
 }
 header nav .right .notifications {
-  margin: 0 2rem;
+  margin: 0 1.25em;
   color: #505050;
   font-size: 1.25rem;
 }
@@ -187,10 +185,12 @@ section#home .container h2 {
   color: #03071e;
   font-size: 3em;
   text-align: center;
+  animation: opening 1s;
 }
 section#home .container h2 span {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: #03071e;
 }
 section#home .container p {
   text-align: center;
@@ -198,6 +198,17 @@ section#home .container p {
   font-size: 1em;
   color: #505050;
   padding: 1em 0;
+  animation: opening 1s;
+}
+@keyframes opening {
+  from {
+    opacity: 0;
+    transform: translateY(40%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 section#home .container .copyright {
   position: absolute;
@@ -399,6 +410,46 @@ section#problem .container .send {
   border-radius: 0.25rem;
   align-self: flex-end;
   font-size: 1em;
+}
+
+#err404 {
+  height: 100%;
+  width: 100%;
+  background: url("../img/nodes.svg"), linear-gradient(0deg, rgba(72, 243, 129, 0.1), #fff);
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  flex-direction: column;
+}
+#err404 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+#err404 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto 0;
+}
+#err404 .container h1,
+#err404 .container h2 {
+  color: #03071e;
+}
+#err404 .container h1 {
+  font-size: 8em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px;
+  -webkit-text-stroke-color: #202020;
+}
+#err404 .container h2 {
+  font-size: 4em;
+}
+#err404 .container h3 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #505050;
 }
 
 * {

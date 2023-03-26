@@ -56,6 +56,23 @@ class AuthMiddleware {
       });
     }
   }
+
+  static async blockLoggedInUser(req, res, next) {
+    try {
+      const token = req.cookies.jwt;
+
+      if (!token) {
+        next();
+      } else {
+        res.redirect("/");
+      }
+    } catch (error) {
+      res.json({
+        success: false,
+        error: error,
+      });
+    }
+  }
 }
 
 export default AuthMiddleware;

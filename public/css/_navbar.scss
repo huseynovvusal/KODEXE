@@ -46,7 +46,7 @@ header {
       }
 
       .logo {
-        height: 1.5rem;
+        height: 1.5em;
         margin-right: 1rem;
         z-index: 100;
         padding-left: 1rem;
@@ -121,12 +121,6 @@ header {
         cursor: pointer;
       }
 
-      .profile {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
       .auth-link {
         text-decoration: none;
         font-weight: 400;
@@ -146,14 +140,17 @@ header {
       .profile {
         border-radius: 50%;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
-          width: 40px;
+          width: 2em;
         }
       }
 
       .notifications {
-        margin: 0 2rem;
+        margin: 0 1.25em;
         color: $light-dark;
         font-size: 1.25rem;
       }

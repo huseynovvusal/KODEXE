@@ -33,5 +33,10 @@ app.use(cookieParser());
 app.get("*", AuthMiddleware.checkUser);
 app.use("/", pageRoute);
 
+// 404
+app.use(function (req, res) {
+  res.status(404).render("404");
+});
+
 // RUN
 app.listen(PORT, () => console.log(`App is running on PORT : ${PORT}`));
