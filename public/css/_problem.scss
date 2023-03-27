@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");
+
 @import "colors";
 
 section#problem {
@@ -211,7 +213,7 @@ section#problem {
             border-radius: 0.25rem;
             padding: 0.5rem 0.25rem;
             box-sizing: border-box;
-            font-family: "Consolas", sans-serif;
+            font-family: "Roboto Mono", sans-serif;
             color: $dark-blue;
           }
         }
