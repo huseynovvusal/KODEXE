@@ -392,6 +392,7 @@ section#problem .container h1 {
 }
 section#problem .container .description {
   margin-bottom: 1.5rem;
+  color: #505050;
 }
 section#problem .container p {
   color: #202020;
@@ -528,6 +529,71 @@ section#problem .container form .container button {
   border-radius: 0.25rem;
   cursor: pointer;
 }
+section#problem .container .result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section#problem .container .result .container {
+  display: flex;
+  flex-direction: column;
+  color: #03071e;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+section#problem .container .result .container h4 {
+  margin: 0.5rem 0;
+  font-weight: 600;
+  font-size: 1em;
+}
+section#problem .container .result .container h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25em;
+}
+section#problem .container .result .container p {
+  color: #505050;
+  font-size: 1em;
+}
+section#problem .container .result .container p.error {
+  color: #d00000;
+}
+section#problem .container .result .container p.accepted {
+  color: #1f9a65;
+}
+section#problem .container .result .container span.success {
+  font-size: 3em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #19c587;
+  padding: 1rem 0;
+  animation: 1s success infinite alternate;
+}
+@keyframes success {
+  from {
+    letter-spacing: 0.2rem;
+  }
+  to {
+    letter-spacing: 0.05rem;
+  }
+}
+section#problem .container .result .container .output {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+@media screen and (max-width: 525px) {
+  section#problem .container .result .container .output {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+section#problem .container .result .container .output div {
+  background: rgb(245, 245, 245);
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+}
 
 #err404 {
   background: url("../img/nodes.svg"), linear-gradient(0deg, rgba(72, 243, 129, 0.1), #fff);
@@ -604,7 +670,7 @@ span.v-line {
 
 section {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

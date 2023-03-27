@@ -82,6 +82,7 @@ section#problem {
 
     .description {
       margin-bottom: 1.5rem;
+      color: $light-dark;
     }
 
     p {
@@ -233,6 +234,81 @@ section#problem {
           padding: 0.5rem 1rem;
           border-radius: 0.25rem;
           cursor: pointer;
+        }
+      }
+    }
+
+    .result {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        color: $dark-blue;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+
+        h4 {
+          margin: 0.5rem 0;
+          font-weight: 600;
+          font-size: 1em;
+        }
+
+        h3 {
+          margin-bottom: 0.5rem;
+          font-size: 1.25em;
+        }
+
+        p {
+          color: $light-dark;
+          font-size: 1em;
+
+          &.error {
+            color: $red;
+          }
+
+          &.accepted {
+            color: $easy;
+          }
+        }
+
+        span.success {
+          font-size: 3em;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          color: $green;
+          padding: 1rem 0;
+          animation: 1s success infinite alternate;
+        }
+
+        @keyframes success {
+          from {
+            letter-spacing: 0.2rem;
+          }
+          to {
+            letter-spacing: 0.05rem;
+          }
+        }
+
+        .output {
+          margin-top: 1rem;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 1rem;
+
+          @media screen and (max-width: 525px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+          }
+
+          div {
+            background: $light;
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+          }
         }
       }
     }

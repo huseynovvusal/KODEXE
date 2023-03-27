@@ -30,7 +30,9 @@ class ProblemController {
         code
       );
 
-      console.log("RESULT ->", result);
+      // console.log("RESULT ->", result);
+
+      res.send(result);
 
       //
     } catch (error) {

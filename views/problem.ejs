@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/codemirror-5.65.12/theme/dracula.css">
   <script src="/codemirror-5.65.12/lib/codemirror.js"></script>
   <script src="/codemirror-5.65.12/mode/python/python.js"></script>
+  <script src="/codemirror-5.65.12/mode/clike/clike.js"></script>
   <script src="/codemirror-5.65.12/addon/edit/closebrackets.js"></script>
 
   <%- include("partials/_navbar") %>
@@ -51,12 +52,12 @@
 
       <div class="h-line"></div>
 
-      <form action="/problemset/<%= problem._id %>/solution" method="post">
+      <form>
         <div class="container">
           <h3>Həllini Göndər</h3>
 
           <div class="language">
-            <label for="language">Dil</label>
+            <label>Dil</label>
             <select name="language" id="language">
               <option value="python">Python</option>
               <option value="c">C</option>
@@ -72,24 +73,116 @@
           <button type="submit">Göndər</button>
         </div>
       </form>
+
+      <div class="h-line" style="margin: 1rem 0;"></div>
+
+      <div class="result">
+        <div class="container">
+          <h3>Kodun nəticəsi</h3>
+          <!-- NOT RUNNED -->
+          <p>Siz hələ kodu icra etməmisiniz</p>
+          <!-- NOT RUNNED -->
+        </div>
+      </div>
     </div>
   </section>
 
   <script>
-    let editor = CodeMirror.fromTextArea(document.getElementById("code"),{
-      mode : "text/x-python",
-      theme : "dracula",
+    let editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      mode: "text/x-python",
+      theme: "dracula",
       lineNumbers: true,
-      autoCloseBrackets : true
+      autoCloseBrackets: true
     })
 
     editor.save();
 
     const form = document.querySelector("form");
+    const select = document.getElementById("language")
+    const textarea = document.querySelector("textarea");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      let url = "/problemset/<%= problem._id %>/solution";
+      
+      let body = {
+        language : select.value,
+        code : textarea.value
+      }
+
+      let res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+      });
+
+      let data = await res.json();
+
+      console.log(data);
+
+      updateResult(data)
+    })
+
+    function updateResult(data){
+      let result = document.querySelector('.result .container')
+
+      if(data.success){
+        result.innerHTML = `
+        <h3>Kodun nəticəsi</h3>
+        <p class="accepted">Qəbul olundu</p>
+        <span class="success">TƏBRİKLƏR!</span> 
+        `
+      }else{
+        let s = "";
+
+        if(data.error == 'Yalnış cavab'){
+          s = `. Kodunuz ${data.passed} testi keçdi`;
+        }else{
+          s = " Xətası";
+        }
+
+        result.innerHTML = `
+        <h3>Kodun nəticəsi</h3>
+        <p class="error">${data.error + s}</p>
+
+        <!--
+          <div class="output">
+            <div class="user-output">
+              <h4>Çıxış:</h4>
+              <p>Salam KODEX!</p>
+            </div>
+            <div class="expected-output">
+              <h4>Gözlənilən:</h4>
+              <p>Salam KODEXE!</p>
+            </div>
+          </div>
+
+        -->
+        `;
+      }
+    }
+
+    // SELECT
 
     document.body.onkeyup = () => {
-      document.querySelector("textarea").value = editor.getValue();
+      textarea.value = editor.getValue();
     }
+
+
+    select.addEventListener("change", (e) => {
+      if (select.value == "cpp") {
+        editor.setOption("mode", "text/x-c++src")
+      } else if (select.value == "c") {
+        editor.setOption("mode", "text/x-csrc")
+      } else {
+        editor.setOption("mode", "text/x-python")
+      }
+
+      editor.save()
+    })
   </script>
 </body>
 
