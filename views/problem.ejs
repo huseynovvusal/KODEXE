@@ -3,7 +3,14 @@
 <%- include("partials/_head") %>
 
 <body>
+  <link rel="stylesheet" href="/codemirror-5.65.12/lib/codemirror.css">
+  <link rel="stylesheet" href="/codemirror-5.65.12/theme/dracula.css">
+  <script src="/codemirror-5.65.12/lib/codemirror.js"></script>
+  <script src="/codemirror-5.65.12/mode/python/python.js"></script>
+  <script src="/codemirror-5.65.12/addon/edit/closebrackets.js"></script>
+
   <%- include("partials/_navbar") %>
+
 
   <!-- PROBLEM -->
 
@@ -58,8 +65,8 @@
           </div>
 
           <div class="code">
-            <label for="code">Mənbə kodu</label>
-            <textarea name="code" id="code" required></textarea>
+            <label>Mənbə kodu</label>
+            <textarea name="code" id="code"></textarea>
           </div>
 
           <button type="submit">Göndər</button>
@@ -67,6 +74,23 @@
       </form>
     </div>
   </section>
+
+  <script>
+    let editor = CodeMirror.fromTextArea(document.getElementById("code"),{
+      mode : "text/x-python",
+      theme : "dracula",
+      lineNumbers: true,
+      autoCloseBrackets : true
+    })
+
+    editor.save();
+
+    const form = document.querySelector("form");
+
+    document.body.onkeyup = () => {
+      document.querySelector("textarea").value = editor.getValue();
+    }
+  </script>
 </body>
 
 </html>

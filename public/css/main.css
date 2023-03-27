@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");
 header {
   display: flex;
   width: 100%;
@@ -508,8 +509,14 @@ section#problem .container form .container .code textarea {
   border-radius: 0.25rem;
   padding: 0.5rem 0.25rem;
   box-sizing: border-box;
-  font-family: "Consolas", sans-serif;
+  font-family: "Roboto Mono", sans-serif;
   color: #03071e;
+}
+section#problem .container form .container .code .CodeMirror {
+  border-radius: 0.25rem;
+  padding: 1rem 0;
+  overflow: hidden;
+  height: 400px;
 }
 section#problem .container form .container button {
   align-self: flex-start;
@@ -519,6 +526,7 @@ section#problem .container form .container button {
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 #err404 {
