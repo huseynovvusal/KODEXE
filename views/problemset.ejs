@@ -7,34 +7,18 @@
 
     <section id="problems">
       <div class="container">
+        <% for(_problem of problems) { %>
         <div class="problem">
           <div class="left">
-            <h3>Ədəd Məsələsi</h3>
+            <h3><%= _problem.name %></h3>
             <p>
-              <span class="easy">Asan</span>, Xal : 10, Həlletmə dərəcəsi : 97%
+              <span class="easy"><%= _problem.difficulty %></span>, Xal : <%=
+              _problem.score %>, Həllər : <%= _problem.solutions.length %>
             </p>
           </div>
-          <a href="/problemset/">Həll Et</a>
+          <a href="/problemset/<%= _problem._id %>">Həll Et</a>
         </div>
-        <div class="problem">
-          <div class="left">
-            <h3>Kitablar</h3>
-            <p>
-              <span class="medium">Orta</span>, Xal : 20, Həlletmə dərəcəsi :
-              64%
-            </p>
-          </div>
-          <a href="/problemset/">Həll Et</a>
-        </div>
-        <div class="problem">
-          <div class="left">
-            <h3>Şah kimdir?</h3>
-            <p>
-              <span class="hard">Çətin</span>, Xal : 30, Həlletmə dərəcəsi : 23%
-            </p>
-          </div>
-          <a href="/problemset/">Həll Et</a>
-        </div>
+        <% } %>
       </div>
     </section>
   </body>

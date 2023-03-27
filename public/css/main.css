@@ -330,6 +330,7 @@ section#problems .container .problem span.hard {
 section#problem {
   align-items: flex-start;
   padding: 2rem 0;
+  min-height: 100%;
 }
 section#problem .container {
   display: flex;
@@ -337,8 +338,22 @@ section#problem .container {
   background: #fff;
   border-radius: 0.5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
-  padding: 2rem 2rem;
+  padding: 2rem 2em;
   box-sizing: border-box;
+}
+section#problem .container .constraints {
+  display: flex;
+  flex-direction: column;
+}
+section#problem .container .constraints h2 {
+  font-size: 1.1em;
+  color: #03071e;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+section#problem .container .constraints p {
+  color: #505050;
+  margin-bottom: 1.5rem;
 }
 section#problem .container .nav {
   display: flex;
@@ -366,12 +381,16 @@ section#problem .container .nav ul li a {
   padding: 0.5rem 1rem;
   font-size: 1em;
 }
+section#problem .container .nav ul li a.active {
+  background: rgba(25, 197, 134, 0.75);
+  color: #fff;
+}
 section#problem .container h1 {
   color: #03071e;
   margin-bottom: 0.5rem;
 }
 section#problem .container .description {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 section#problem .container p {
   color: #202020;
@@ -379,13 +398,22 @@ section#problem .container p {
 section#problem .container .examples {
   display: flex;
   flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
   margin-bottom: 1rem;
 }
 section#problem .container .examples .example {
   margin: 1rem 0;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 525px) {
+  section#problem .container .examples .example {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 section#problem .container .examples .example span {
   font-weight: 600;
@@ -396,11 +424,18 @@ section#problem .container .examples .example p {
 }
 section#problem .container .examples .example .left,
 section#problem .container .examples .example .right {
-  width: 50%;
   background: rgb(245, 245, 245);
-  margin: 0 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 525px) {
+  section#problem .container .examples .example .left,
+  section#problem .container .examples .example .right {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
 }
 section#problem .container .send {
   text-decoration: none;
@@ -410,6 +445,80 @@ section#problem .container .send {
   border-radius: 0.25rem;
   align-self: flex-end;
   font-size: 1em;
+}
+section#problem .container .h-line {
+  margin-bottom: 0;
+}
+section#problem .container form {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+section#problem .container form .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+section#problem .container form .container label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+section#problem .container form .container h3 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #03071e;
+}
+section#problem .container form .container .language {
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+section#problem .container form .container .language select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #505050;
+  color: #03071e;
+  border-radius: 0.25rem;
+  outline: none;
+  background: none;
+}
+section#problem .container form .container .language label {
+  margin-right: 1rem;
+}
+section#problem .container form .container .code {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+section#problem .container form .container .code label {
+  margin-bottom: 1rem;
+}
+section#problem .container form .container .code textarea {
+  width: 100%;
+  height: 400px;
+  outline: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.25rem;
+  box-sizing: border-box;
+  font-family: "Consolas", sans-serif;
+  color: #03071e;
+}
+section#problem .container form .container button {
+  align-self: flex-start;
+  background: #19c587;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
 }
 
 #err404 {
@@ -487,8 +596,27 @@ span.v-line {
 
 section {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.h-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 1rem 0;
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+  background: #19c587;
+  border-radius: 0.5rem;
+  border: 3px solid #fff;
 }/*# sourceMappingURL=main.css.map */

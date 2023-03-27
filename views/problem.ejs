@@ -1,50 +1,72 @@
 <!DOCTYPE html>
 <html lang="az">
-  <%- include("partials/_head") %>
+<%- include("partials/_head") %>
 
-  <body>
-    <%- include("partials/_navbar") %>
+<body>
+  <%- include("partials/_navbar") %>
 
-    <!-- PROBLEM -->
+  <!-- PROBLEM -->
 
-    <section id="problem">
-      <div class="container">
-        <div class="nav">
-          <ul>
-            <li><a href="/problems/1">Məsələ</a></li>
-            <li><a href="/problems/1/solutions">Həlləriniz</a></li>
-            <li><a href="/problems/1/discussion">Müzakirə</a></li>
-            <li><a href="/problems/1/solutions">Həllər</a></li>
-          </ul>
-        </div>
+  <section id="problem">
+    <div class="container">
+      <div class="nav">
+        <ul>
+          <li><a class="<%= link === "problem" ? "active" : "" %>" href="/problems/<%= problem._id %>">Məsələ</a></li>
+          <li><a class="<%= link === "solutions" ? "active" : "" %>" href="/problems/<%= problem._id %>/solutions">Həllər</a></li>
+          <li><a class="<%= link === "discussion" ? "active" : "" %>" href="/problems/<%= problem._id %>/discussion">Müzakirə</a></li>
+        </ul>
+      </div>
 
-        <h1>Ədəd Məsələsi</h1>
+      <h1><%= problem.name %></h1>
 
-        <div class="description">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur
-          veritatis, incidunt in quas quo quam numquam quae reiciendis explicabo
-          expedita voluptatum doloremque officiis, obcaecati animi iste, ducimus
-          esse tenetur. Beatae deserunt totam similique impedit nostrum
-          sapiente. Nostrum ea eum pariatur aut sapiente est dolorum quaerat
-          natus laborum, maiores, nemo velit saepe! Temporibus, dolore quos! Sed
-          officiis eius rerum ad nesciunt.
-        </div>
+      <div class="description"><%= problem.description %></div>
 
-        <div class="examples">
-          <div class="example">
-            <div class="left">
-              <span>Giriş:</span>
-              <p>5<br />1 2 3 4 5</p>
-            </div>
-            <div class="right">
-              <span>Çıxış:</span>
-              <p>15</p>
-            </div>
+      <div class="constraints">
+        <h2>Məhdudiyyətlər</h2>
+        <p><%= problem.constraints %></p>
+      </div>
+
+
+      <div class="examples">
+        <% for (example of problem.examples){ %>
+        <div class="example">
+          <div class="left">
+            <span>Giriş:</span>
+            <p><%= example.input %></p>
+          </div>
+          <div class="right">
+            <span>Çıxış:</span>
+            <p><%= example.output %></p>
           </div>
         </div>
-
-        <a class="send" href="/problems/1/solution">Həlli Göndər</a>
+        <% } %>
       </div>
-    </section>
-  </body>
+
+      <div class="h-line"></div>
+
+      <form action="/problemset/<%= problem._id %>/solution" method="post">
+        <div class="container">
+          <h3>Həllini Göndər</h3>
+
+          <div class="language">
+            <label for="language">Dil</label>
+            <select name="language" id="language">
+              <option value="python">Python</option>
+              <option value="c">C</option>
+              <option value="cpp">C++</option>
+            </select>
+          </div>
+
+          <div class="code">
+            <label for="code">Mənbə kodu</label>
+            <textarea name="code" id="code" required></textarea>
+          </div>
+
+          <button type="submit">Göndər</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+
 </html>

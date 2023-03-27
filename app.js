@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import mongoose from "mongoose";
 import { Database } from "./helpers/database/connection.js";
 import pageRoute from "./routes/pageRoute.js";
 import cookieParser from "cookie-parser";

@@ -3,6 +3,7 @@
 section#problem {
   align-items: flex-start;
   padding: 2rem 0;
+  min-height: 100%;
 
   .container {
     display: flex;
@@ -10,8 +11,25 @@ section#problem {
     background: $white;
     border-radius: 0.5rem;
     box-shadow: 0 0 1rem $dark-shadow;
-    padding: 2rem 2rem;
+    padding: 2rem 2em;
     box-sizing: border-box;
+
+    .constraints {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        font-size: 1.1em;
+        color: $dark-blue;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      p {
+        color: $light-dark;
+        margin-bottom: 1.5rem;
+      }
+    }
 
     .nav {
       display: flex;
@@ -45,6 +63,11 @@ section#problem {
             background: $light;
             padding: 0.5rem 1rem;
             font-size: 1em;
+
+            &.active {
+              background: $green-o;
+              color: $white;
+            }
           }
         }
       }
@@ -56,7 +79,7 @@ section#problem {
     }
 
     .description {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     p {
@@ -66,12 +89,20 @@ section#problem {
     .examples {
       display: flex;
       flex-direction: column;
+      position: relative;
+      box-sizing: border-box;
 
       .example {
         margin: 1rem 0;
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+        box-sizing: border-box;
+
+        @media screen and (max-width: 525px) {
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr;
+        }
 
         span {
           font-weight: 600;
@@ -84,11 +115,16 @@ section#problem {
 
         .left,
         .right {
-          width: 50%;
           background: $light;
-          margin: 0 0.5rem;
           padding: 0.5rem 1rem;
           border-radius: 0.25rem;
+          height: 100%;
+          box-sizing: border-box;
+
+          @media screen and (max-width: 525px) {
+            width: 100%;
+            margin: 0.25rem 0;
+          }
         }
       }
 
@@ -103,6 +139,93 @@ section#problem {
       border-radius: 0.25rem;
       align-self: flex-end;
       font-size: 1em;
+    }
+
+    .h-line {
+      margin-bottom: 0;
+    }
+
+    form {
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+
+        label {
+          font-size: 1rem;
+          font-weight: 500;
+        }
+
+        h3 {
+          font-size: 1.5em;
+          font-weight: 600;
+          margin-bottom: 2rem;
+          color: $dark-blue;
+        }
+
+        .language {
+          display: flex;
+          align-self: flex-start;
+          align-items: center;
+          margin-bottom: 1.5rem;
+
+          select {
+            padding: 0.5rem 1rem;
+            border: 1px solid $light-dark;
+            color: $dark-blue;
+            border-radius: 0.25rem;
+            outline: none;
+            background: none;
+          }
+
+          label {
+            margin-right: 1rem;
+          }
+        }
+
+        .code {
+          align-self: flex-start;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 1rem;
+          width: 100%;
+
+          label {
+            margin-bottom: 1rem;
+          }
+
+          textarea {
+            // resize: ;
+            width: 100%;
+            height: 400px;
+            outline: none;
+            border-radius: 0.25rem;
+            padding: 0.5rem 0.25rem;
+            box-sizing: border-box;
+            font-family: "Consolas", sans-serif;
+            color: $dark-blue;
+          }
+        }
+
+        button {
+          align-self: flex-start;
+          background: $green;
+          border: none;
+          outline: none;
+          color: $white;
+          padding: 0.5rem 1rem;
+          border-radius: 0.25rem;
+        }
+      }
     }
   }
 }
