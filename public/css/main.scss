@@ -68,3 +68,9 @@ section {
   border-radius: 0.5rem;
   border: 3px solid $white;
 }
+
+i.solved {
+  color: $green;
+  margin-left: 1rem;
+  font-size: 1.25em;
+}

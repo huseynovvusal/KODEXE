@@ -76,6 +76,8 @@ section#problem {
     }
 
     h1 {
+      display: flex;
+      align-items: center;
       color: $dark-blue;
       margin-bottom: 0.5rem;
     }
@@ -234,6 +236,11 @@ section#problem {
           padding: 0.5rem 1rem;
           border-radius: 0.25rem;
           cursor: pointer;
+
+          &.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+          }
         }
       }
     }

@@ -40,6 +40,13 @@ router.get(
   userController.verificate
 );
 
+// POST USER
+router.post(
+  "/:username/update/score",
+  AuthMiddleware.checkUser,
+  PageController.updateUserScore
+);
+
 router.use("/problemset", problemsetRoute);
 
 export default router;

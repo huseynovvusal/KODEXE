@@ -299,9 +299,15 @@ section#problems .container .problem {
   border: 1px solid rgb(245, 245, 245);
 }
 section#problems .container .problem h3 {
+  display: flex;
+  align-items: center;
   font-size: 1.5em;
   font-weight: 600;
   color: #03071e;
+}
+section#problems .container .problem h3 i {
+  font-size: 1.1em;
+  margin-left: 0.25em;
 }
 section#problems .container .problem p {
   font-size: 1em;
@@ -387,6 +393,8 @@ section#problem .container .nav ul li a.active {
   color: #fff;
 }
 section#problem .container h1 {
+  display: flex;
+  align-items: center;
   color: #03071e;
   margin-bottom: 0.5rem;
 }
@@ -528,6 +536,10 @@ section#problem .container form .container button {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+section#problem .container form .container button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 section#problem .container .result {
   display: flex;
@@ -693,4 +705,10 @@ section {
   background: #19c587;
   border-radius: 0.5rem;
   border: 3px solid #fff;
+}
+
+i.solved {
+  color: #19c587;
+  margin-left: 1rem;
+  font-size: 1.25em;
 }/*# sourceMappingURL=main.css.map */

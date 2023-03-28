@@ -17,9 +17,16 @@ section#problems {
       border: 1px solid $light;
 
       h3 {
+        display: flex;
+        align-items: center;
         font-size: 1.5em;
         font-weight: 600;
         color: $dark-blue;
+
+        i {
+          font-size: 1.1em;
+          margin-left: 0.25em;
+        }
       }
 
       p {

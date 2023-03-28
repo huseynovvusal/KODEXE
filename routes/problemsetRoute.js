@@ -14,7 +14,7 @@ router.get(
 );
 
 router.get(
-  "/:id",
+  "/:name",
   AuthMiddleware.blockNotLoggedInUser,
   PageController.getProblemPage
 );
@@ -22,7 +22,7 @@ router.get(
 // POST
 
 router.post(
-  "/:id/solution",
+  "/:name/solution",
   AuthMiddleware.blockNotLoggedInUser,
   ProblemController.problemSolution
 );

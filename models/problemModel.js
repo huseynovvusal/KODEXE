@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const problemSchema = new Schema({
   name: { type: String, required: true },
+  url_name: { type: String, required: true },
   description: { type: String, required: true },
   difficulty: { type: String, default: "Asan" },
   score: { type: Number, default: 10 },

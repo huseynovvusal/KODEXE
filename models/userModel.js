@@ -20,7 +20,7 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     verification: { type: Boolean, default: false },
     type: { type: String, default: "User" },
-    solved_problems: { type: Number, default: 0 },
+    solved_problems: { type: Array, default: [] },
     score: { type: Number, default: 0 },
     description: { type: String, default: "" },
     image: { type: String, default: "/img/users/dafault-user.jpg" },

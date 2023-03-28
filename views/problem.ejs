@@ -9,6 +9,7 @@
   <script src="/codemirror-5.65.12/mode/python/python.js"></script>
   <script src="/codemirror-5.65.12/mode/clike/clike.js"></script>
   <script src="/codemirror-5.65.12/addon/edit/closebrackets.js"></script>
+  <script src="/codemirror-5.65.12/keymap/sublime.js"></script>
 
   <%- include("partials/_navbar") %>
 
@@ -25,7 +26,11 @@
         </ul>
       </div>
 
-      <h1><%= problem.name %></h1>
+      <h1><%= problem.name %>
+        <% if(user.solved_problems.includes(problem.url_name)){ %>
+          <i class='bx bx-check-circle solved' ></i>
+        <% } %>
+      </h1> 
 
       <div class="description"><%= problem.description %></div>
 
@@ -92,7 +97,8 @@
       mode: "text/x-python",
       theme: "dracula",
       lineNumbers: true,
-      autoCloseBrackets: true
+      autoCloseBrackets: true,
+      keyMap: "sublime",
     })
 
     editor.save();
@@ -100,15 +106,18 @@
     const form = document.querySelector("form");
     const select = document.getElementById("language")
     const textarea = document.querySelector("textarea");
+    const button = document.querySelector("form button");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      let url = "/problemset/<%= problem._id %>/solution";
-      
+      button.classList.add("disabled");
+
+      let url = "/problemset/<%= problem.url_name %>/solution";
+
       let body = {
-        language : select.value,
-        code : textarea.value
+        language: select.value,
+        code: textarea.value
       }
 
       let res = await fetch(url, {
@@ -121,26 +130,28 @@
 
       let data = await res.json();
 
-      console.log(data);
+      button.classList.remove("disabled");
 
       updateResult(data)
     })
 
-    function updateResult(data){
+    function updateResult(data) {
       let result = document.querySelector('.result .container')
 
-      if(data.success){
+      if (data.success) {
         result.innerHTML = `
         <h3>Kodun nəticəsi</h3>
         <p class="accepted">Qəbul olundu</p>
         <span class="success">TƏBRİKLƏR!</span> 
         `
-      }else{
+
+        updateUser();
+      } else {
         let s = "";
 
-        if(data.error == 'Yalnış cavab'){
+        if (data.error == 'Yalnış cavab') {
           s = `. Kodunuz ${data.passed} testi keçdi`;
-        }else{
+        } else {
           s = " Xətası";
         }
 
@@ -164,6 +175,22 @@
         `;
       }
     }
+
+    // UPDATE USER
+
+    async function updateUser() {
+      let body = {
+        solved_problem: "<%= problem.url_name %>",
+      };
+
+      const res = await fetch("/<%= user.username %>/update/score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+      });
+    };
 
     // SELECT
 

@@ -17,10 +17,10 @@ class ProblemController {
 
   static async problemSolution(req, res) {
     try {
-      const problemId = req.params.id;
+      const problemName = req.params.name;
       const { language, code } = req.body;
 
-      const problem = await Problem.findById(problemId);
+      const problem = await Problem.findOne({ url_name: problemName });
 
       const testcases = problem.testcases;
 

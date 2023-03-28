@@ -10,13 +10,21 @@
         <% for(_problem of problems) { %>
         <div class="problem">
           <div class="left">
-            <h3><%= _problem.name %></h3>
+            <h3>
+              <%= _problem.name %> <%
+              if(user.solved_problems.includes(_problem.url_name)){ %>
+              <i class="bx bx-check-circle solved"></i>
+              <% } %>
+            </h3>
             <p>
               <span class="easy"><%= _problem.difficulty %></span>, Xal : <%=
               _problem.score %>, Həllər : <%= _problem.solutions.length %>
             </p>
           </div>
-          <a href="/problemset/<%= _problem._id %>">Həll Et</a>
+          <a href="/problemset/<%= _problem.url_name %>">
+            <% if(user.solved_problems.includes(_problem.url_name)){ %> Yenidən
+            <% } else { %> Həll Et <% }%>
+          </a>
         </div>
         <% } %>
       </div>
