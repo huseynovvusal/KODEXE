@@ -22,8 +22,8 @@ const userSchema = new Schema(
     type: { type: String, default: "User" },
     solved_problems: { type: Array, default: [] },
     score: { type: Number, default: 0 },
-    description: { type: String, default: "" },
-    image: { type: String, default: "/img/users/dafault-user.jpg" },
+    description: { type: String, default: "KODEXE çox maraqlıdır" },
+    image: { type: String, default: "dafault-user.jpg" },
   },
   {
     timestamps: true,

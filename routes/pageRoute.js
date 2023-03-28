@@ -49,4 +49,7 @@ router.post(
 
 router.use("/problemset", problemsetRoute);
 
+// PROFILE
+router.get("/:username", PageController.getProfilePage);
+
 export default router;

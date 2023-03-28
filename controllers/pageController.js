@@ -76,6 +76,20 @@ class PageController {
       console.log(error);
     }
   }
+
+  static async getProfilePage(req, res) {
+    try {
+      const user = await User.findOne({ username: req.params.username });
+
+      if (user) res.render("profile", { link: "profile", _user: user });
+      else res.render("404");
+    } catch (error) {
+      res.json({
+        success: false,
+        error: error,
+      });
+    }
+  }
 }
 
 export default PageController;

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="az">
+  <!-- HEAD -->
+  <%- include("partials/_head") %>
+
+  <body>
+    <!-- HEADER -->
+    <%- include("partials/_navbar") %>
+
+    <!-- PROFILE -->
+
+    <section id="profile">
+      <div class="container">
+        <img src="/img/users/<%= _user.image %>" alt="Profile Photo" />
+        <div class="info">
+          <div class="top">
+            <h1>
+              <%= _user.name %> <%= _user.surname %><span class="badge"
+                ><%= _user.type %></span
+              >
+            </h1>
+            <p class="username"><%= _user.username %></p>
+            <p class="description"><%= _user.description %></p>
+          </div>
+          <div class="bottom">
+            <h3 class="score">Xal : <span><%= _user.score %></span></h3>
+            <h3 class="solved">
+              Həll olunmuş məsələlər :
+              <span><%= _user.solved_problems.length %></span>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

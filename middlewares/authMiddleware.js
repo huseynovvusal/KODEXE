@@ -10,6 +10,7 @@ class AuthMiddleware {
         jwt.verify(token, process.env.JWT_SECRET, (err) => {
           if (err) {
             console.log(err);
+            res.locals.user = null;
             res.redirect("/login");
           } else {
             next();
@@ -17,10 +18,14 @@ class AuthMiddleware {
         });
       } else {
         // TOKEN EXPIRED. LOGIN
+        res.locals.user = null;
+
         res.redirect("/login");
       }
     } catch (error) {
       console.log(error);
+      res.locals.user = null;
+
       res.redirect("/login");
     }
   }
@@ -40,6 +45,7 @@ class AuthMiddleware {
             if (user) {
               res.locals.user = user;
             } else {
+              res.locals.user = null;
               res.clearCookie("jwt");
             }
 
@@ -52,6 +58,7 @@ class AuthMiddleware {
         next();
       }
     } catch (error) {
+      res.locals.user = null;
       res.json({
         success: false,
         error: error,
@@ -64,11 +71,14 @@ class AuthMiddleware {
       const token = req.cookies.jwt;
 
       if (!token) {
+        res.locals.user = null;
+
         next();
       } else {
         res.redirect("/");
       }
     } catch (error) {
+      res.locals.user = null;
       res.json({
         success: false,
         error: error,
@@ -83,9 +93,11 @@ class AuthMiddleware {
       if (token) {
         next();
       } else {
+        res.locals.user = null;
         res.redirect("/");
       }
     } catch (error) {
+      res.locals.user = null;
       res.json({
         success: false,
         error: error,

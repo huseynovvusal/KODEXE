@@ -19,8 +19,8 @@
       <div class="right">
         <% if(user){ %>
         <button class="notifications"><i class="bx bx-bell"></i></button>
-        <a class="profile" href="/users/huseynovvusal">
-          <img src="<%= user.image %>" alt="User" />
+        <a class="profile" href="/<%= user.username %>">
+          <img src="/img/users/<%= user.image %>" alt="User" />
         </a>
         <% } else{ %>
 

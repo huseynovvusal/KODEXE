@@ -607,6 +607,77 @@ section#problem .container .result .container .output div {
   border-radius: 0.25rem;
 }
 
+section#profile {
+  padding: 0 1rem;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+section#profile .container {
+  background: #fff;
+  padding: 1rem;
+  margin-top: 2rem;
+  color: #03071e;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-gap: 2rem;
+  border-radius: 0.5rem;
+}
+@media screen and (max-width: 768px) {
+  section#profile .container {
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+}
+section#profile .container img {
+  width: 100%;
+  border-radius: 1rem;
+}
+@media screen and (max-width: 768px) {
+  section#profile .container img {
+    width: 50%;
+  }
+}
+section#profile .container .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+section#profile .container .info h1 {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+section#profile .container .info h1 .badge {
+  font-size: 0.5em;
+  font-weight: 500;
+  border: 1px solid #505050;
+  background: rgb(245, 245, 245);
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.5rem;
+}
+section#profile .container .info .username {
+  color: #505050;
+  font-weight: 400;
+  font-size: 1em;
+  margin-bottom: 0.5rem;
+}
+section#profile .container .info .description {
+  color: #505050;
+  margin-bottom: 0.5rem;
+}
+section#profile .container .info h3 {
+  font-weight: 500;
+  font-size: 1.25em;
+  margin-bottom: 0.25rem;
+  color: #03071e;
+  font-weight: 400;
+}
+section#profile .container .info h3 span {
+  font-weight: 500;
+}
+
 #err404 {
   background: url("../img/nodes.svg"), linear-gradient(0deg, rgba(72, 243, 129, 0.1), #fff);
   background-size: cover;
