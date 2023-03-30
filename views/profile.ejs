@@ -5,32 +5,45 @@
 
   <body>
     <!-- HEADER -->
-    <%- include("partials/_navbar") %>
+    <%- include("partials/_navbar") %> <%- include("partials/_flash") %>
 
     <!-- PROFILE -->
 
     <section id="profile">
       <div class="container">
-        <img src="/img/users/<%= _user.image %>" alt="Profile Photo" />
-        <div class="info">
-          <div class="top">
+        <div class="top">
+          <img src="/img/users/<%= _user.image %>" alt="Profile Photo" />
+
+          <div class="info">
             <h1>
               <%= _user.name %> <%= _user.surname %><span class="badge"
                 ><%= _user.type %></span
               >
             </h1>
             <p class="username"><%= _user.username %></p>
-            <p class="description"><%= _user.description %></p>
           </div>
-          <div class="bottom">
-            <h3 class="score">Xal : <span><%= _user.score %></span></h3>
-            <h3 class="solved">
-              Həll olunmuş məsələlər :
-              <span><%= _user.solved_problems.length %></span>
-            </h3>
-          </div>
+        </div>
+
+        <div class="h-line"></div>
+
+        <div class="bottom">
+          <p class="description"><%= _user.description %></p>
+          <h3 class="history">
+            Qoşulma tarixi :
+            <span><%= formatDate() %></span>
+          </h3>
+          <h3 class="score">Xal : <span><%= _user.score %></span></h3>
+          <h3 class="solved">
+            Həll olunmuş məsələlər :
+            <span><%= _user.solved_problems.length %></span>
+          </h3>
         </div>
       </div>
     </section>
+
+    <% function formatDate() { let date = new Date( _user.createdAt); months = [
+    "Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust",
+    "Sentyabr", "Oktyabr", "Dekabr", ]; return `${months[date.getMonth()]}
+    ${date.getFullYear()}`; } %>
   </body>
 </html>

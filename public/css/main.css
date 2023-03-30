@@ -617,38 +617,35 @@ section#profile .container {
   padding: 1rem;
   margin-top: 2rem;
   color: #03071e;
+  display: flex;
+  border-radius: 1rem;
+  flex-direction: column;
+}
+section#profile .container .top {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 20% 70%;
   grid-gap: 2rem;
-  border-radius: 0.5rem;
+  align-items: center;
 }
 @media screen and (max-width: 768px) {
-  section#profile .container {
-    grid-template-columns: 100%;
-    grid-template-rows: 1fr 1fr;
+  section#profile .container .top {
     grid-gap: 1rem;
   }
 }
-section#profile .container img {
+section#profile .container .top img {
   width: 100%;
-  border-radius: 1rem;
+  border-radius: 50%;
 }
-@media screen and (max-width: 768px) {
-  section#profile .container img {
-    width: 50%;
-  }
-}
-section#profile .container .info {
+section#profile .container .top .info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
-section#profile .container .info h1 {
+section#profile .container .top .info h1 {
   font-weight: 600;
   display: flex;
   align-items: center;
 }
-section#profile .container .info h1 .badge {
+section#profile .container .top .info h1 .badge {
   font-size: 0.5em;
   font-weight: 500;
   border: 1px solid #505050;
@@ -657,24 +654,24 @@ section#profile .container .info h1 .badge {
   padding: 0.1rem 0.25rem;
   border-radius: 0.5rem;
 }
-section#profile .container .info .username {
+section#profile .container .top .info .username {
   color: #505050;
   font-weight: 400;
   font-size: 1em;
   margin-bottom: 0.5rem;
 }
-section#profile .container .info .description {
+section#profile .container .description {
   color: #505050;
   margin-bottom: 0.5rem;
 }
-section#profile .container .info h3 {
+section#profile .container h3 {
   font-weight: 500;
   font-size: 1.25em;
   margin-bottom: 0.25rem;
   color: #03071e;
   font-weight: 400;
 }
-section#profile .container .info h3 span {
+section#profile .container h3 span {
   font-weight: 500;
 }
 
@@ -711,6 +708,52 @@ section#profile .container .info h3 span {
   font-size: 1.5em;
   font-weight: 600;
   color: #505050;
+}
+
+.messages {
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: translateX(-50%);
+}
+.messages .message {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.05);
+  margin: 0.25rem 0;
+  animation: 300ms o ease-in;
+}
+@keyframes o {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.messages .message i {
+  font-size: 1.5em;
+  margin-right: 0.5rem;
+}
+.messages .message span {
+  font-size: 1em;
+}
+.messages .message.success i {
+  color: #1f9a65;
+}
+.messages .message.error i {
+  color: #d00000;
+}
+.messages .message.info i {
+  color: rgb(20, 114, 176);
 }
 
 * {

@@ -3,13 +3,28 @@ import User from "../models/userModel.js";
 
 class PageController {
   static getIndexPage(req, res) {
-    res.render("index", { link: "home" });
+    res.render("index", {
+      link: "home",
+      flash: {
+        success: req.flash("success"),
+        error: req.flash("error"),
+        info: req.flash("info"),
+      },
+    });
   }
   static async getProblemsetPage(req, res) {
     try {
       const problems = await Problem.find();
 
-      res.render("problemset", { link: "problemset", problems: problems });
+      res.render("problemset", {
+        link: "problemset",
+        problems: problems,
+        flash: {
+          success: req.flash("success"),
+          error: req.flash("error"),
+          info: req.flash("info"),
+        },
+      });
     } catch (error) {
       res.json({
         success: false,
@@ -24,6 +39,11 @@ class PageController {
       res.render("problem", {
         link: "problem",
         problem: problem,
+        flash: {
+          success: req.flash("success"),
+          error: req.flash("error"),
+          info: req.flash("info"),
+        },
       });
     } catch (error) {
       res.json({
@@ -33,10 +53,24 @@ class PageController {
     }
   }
   static getLoginPage(req, res) {
-    res.render("login", { link: "login" });
+    res.render("login", {
+      link: "login",
+      flash: {
+        success: req.flash("success"),
+        error: req.flash("error"),
+        info: req.flash("info"),
+      },
+    });
   }
   static getSignupPage(req, res) {
-    res.render("signup", { link: "signup" });
+    res.render("signup", {
+      link: "signup",
+      flash: {
+        success: req.flash("success"),
+        error: req.flash("error"),
+        info: req.flash("info"),
+      },
+    });
   }
 
   static async updateUserScore(req, res) {
@@ -81,7 +115,16 @@ class PageController {
     try {
       const user = await User.findOne({ username: req.params.username });
 
-      if (user) res.render("profile", { link: "profile", _user: user });
+      if (user)
+        res.render("profile", {
+          link: "profile",
+          _user: user,
+          flash: {
+            success: req.flash("success"),
+            error: req.flash("error"),
+            info: req.flash("info"),
+          },
+        });
       else res.render("404");
     } catch (error) {
       res.json({

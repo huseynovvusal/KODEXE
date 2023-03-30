@@ -61,34 +61,28 @@ class UserController {
     });
   }
 
-  static async verification(email, token, host) {
-    try {
-      const link = `http://${host}/verification/${token}`;
-
-      UserController.sendEmail(email, link);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async verificate(req, res) {
     const token = req.params.token;
 
     jwt.verify(token, process.env.JWT_SECRET, async (error, decoded) => {
       if (error) {
-        res.json({
-          success: false,
-          error: error,
-        });
+        req.flash("error", "Gözlənilməz xəta baş verdi");
       } else {
         try {
           const user = await User.create(decoded);
 
-          console.log("Emailiniz doğrulandı. Sayta giriş edə bilərsiniz");
+          req.flash(
+            "success",
+            "Emailiniz doğrulandı. Sayta giriş edə bilərsiniz"
+          );
+
+          // console.log("Emailiniz doğrulandı. Sayta giriş edə bilərsiniz");
 
           res.redirect("/login");
         } catch (error) {
           console.log(error);
+
+          req.flash("error", "Gözlənilməz xəta baş verdi");
 
           res.redirect("/signup");
         }
@@ -100,14 +94,19 @@ class UserController {
     try {
       const token = UserController.createToken({ ...req.body }, "10m");
 
-      UserController.verification(req.body.email, token, req.headers.host);
+      const link = `http://${req.headers.host}/verification/${token}`;
+
+      UserController.sendEmail(req.body.email, link);
+
+      req.flash(
+        "info",
+        `${req.body.email} adresinə bir link göndərdik. Zəhmət olmasa spam qutusunu da yoxlayın`
+      );
 
       res.redirect("/login");
     } catch (error) {
-      res.json({
-        success: false,
-        error: error,
-      });
+      console.log(error);
+      req.flash("error", "Gözlənilməz xəta baş verdi");
     }
   }
 
@@ -130,27 +129,21 @@ class UserController {
             maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
           });
 
-          res.json({
-            success: true,
-          });
+          req.flash("success", "Sayta uğurla giriş etdiniz");
+
+          res.redirect("/");
         } else {
-          res.json({
-            success: false,
-            error: "Yalnış şifrə",
-          });
+          req.flash("error", "Şifrə yalnışdır");
+
+          res.redirect("/login");
         }
       } else {
-        res.json({
-          success: false,
-          error: "Belə bir istifadəçi yoxdur",
-        });
+        req.flash("error", "Belə bir istifadəçi yoxdur");
+        res.redirect("/login");
       }
     } catch (error) {
       console.log(error);
-      res.json({
-        success: false,
-        error: error,
-      });
+      req.flash("error", "Gözlənilməz xəta baş verdi");
     }
   }
 

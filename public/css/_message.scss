@@ -1,0 +1,58 @@
+@import "colors";
+
+.messages {
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: translateX(-50%);
+
+  .message {
+    display: flex;
+    align-items: center;
+    background: $white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.5rem $dark-shadow;
+    margin: 0.25rem 0;
+    animation: 300ms o ease-in;
+
+    @keyframes o {
+      from {
+        transform: translateY(-50%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    i {
+      font-size: 1.5em;
+      margin-right: 0.5rem;
+    }
+
+    span {
+      font-size: 1em;
+    }
+
+    &.success {
+      i {
+        color: $easy;
+      }
+    }
+    &.error {
+      i {
+        color: $red;
+      }
+    }
+    &.info {
+      i {
+        color: $blue;
+      }
+    }
+  }
+}

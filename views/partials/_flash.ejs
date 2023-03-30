@@ -1,0 +1,20 @@
+<div class="messages">
+  <% if(flash.success.length){ %>
+  <div class="message success">
+    <i class="bx bxs-check-circle"></i><span><%= flash.success %></span>
+  </div>
+  <% } %>
+  <!--  -->
+  <% if(flash.error.length){ %>
+  <div class="message error">
+    <i class="bx bxs-x-circle"></i><span><%= flash.error %></span>
+  </div>
+  <% } %>
+  <!--  -->
+  <% if(flash.info.length){ %>
+  <div class="message info">
+    <i class="bx bxs-info-circle"></i><span><%= flash.info %></span>
+  </div>
+
+  <% } %>
+</div>
