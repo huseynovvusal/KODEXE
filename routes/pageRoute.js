@@ -18,6 +18,7 @@ router.get(
   AuthMiddleware.blockLoggedInUser,
   PageController.getLoginPage
 );
+router.get("/leaderboard", PageController.getLeaderboardPage);
 
 // POST
 const userController = new UserController();

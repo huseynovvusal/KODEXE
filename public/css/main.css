@@ -756,6 +756,72 @@ section#profile .container h3 span {
   color: rgb(20, 114, 176);
 }
 
+section#leaderboard {
+  min-height: 100%;
+  display: flex;
+  align-items: flex-start;
+  margin: 3rem 0;
+}
+section#leaderboard .container h1 {
+  font-size: 1.5em;
+  text-align: center;
+  padding-bottom: 1.5rem;
+  color: #03071e;
+  font-weight: 600;
+}
+section#leaderboard .container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+}
+section#leaderboard .container table tbody,
+section#leaderboard .container table thead {
+  font-size: 1em;
+}
+section#leaderboard .container table tbody tr,
+section#leaderboard .container table thead tr {
+  border-bottom: 1pt solid rgb(245, 245, 245);
+  text-align: center;
+}
+section#leaderboard .container table tbody tr.own a,
+section#leaderboard .container table thead tr.own a {
+  color: rgb(248, 148, 34);
+}
+section#leaderboard .container table tbody tr:nth-child(even),
+section#leaderboard .container table thead tr:nth-child(even) {
+  background: rgb(245, 245, 245);
+}
+section#leaderboard .container table tbody tr td,
+section#leaderboard .container table thead tr td {
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+}
+section#leaderboard .container table tbody tr td a,
+section#leaderboard .container table thead tr td a {
+  text-decoration: none;
+  color: rgb(20, 114, 176);
+}
+section#leaderboard .container table tbody th,
+section#leaderboard .container table thead th {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+section#leaderboard .container table thead {
+  background: #19c587;
+  color: #fff;
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -792,14 +858,6 @@ span.v-line {
 
 ::selection {
   background: rgba(0, 0, 0, 0.25);
-}
-
-section {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .h-line {

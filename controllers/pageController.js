@@ -133,6 +133,24 @@ class PageController {
       });
     }
   }
+
+  static async getLeaderboardPage(req, res) {
+    try {
+      const users = await User.find();
+
+      res.render("leaderboard", {
+        link: "leaderboard",
+        users: users.sort((x) => x.score),
+        flash: {
+          success: req.flash("success"),
+          error: req.flash("error"),
+          info: req.flash("info"),
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default PageController;

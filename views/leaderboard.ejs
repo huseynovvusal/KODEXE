@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="az">
+  <!-- HEAD -->
+  <%- include("partials/_head") %>
+
+  <body>
+    <!-- HEADER -->
+    <%- include("partials/_navbar") %> <%- include("partials/_flash") %>
+
+    <!-- HOME -->
+
+    <section id="leaderboard">
+      <div class="container">
+        <h1>Lider lövhəsi</h1>
+        <table>
+          <thead>
+            <th>Yer</th>
+            <th>İstifadəçi adı</th>
+            <th>Xal</th>
+          </thead>
+
+          <% let c = 1 %>
+
+          <tbody>
+            <% for(let _user of users){ %>
+            <tr class="<%= user && user.username === _user.username ? "own" : ""  %>">
+              <td><%= c %></td>
+              <td>
+                <a href="/<%= _user.username %>"><%= _user.username %></a>
+              </td>
+              <td><%= _user.score %></td>
+            </tr>
+            <% c += 1 } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>
