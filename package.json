@@ -4,6 +4,9 @@
   "description": "Website for learn or improve programming",
   "main": "app.js",
   "type": "module",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
