@@ -2,7 +2,7 @@
   "name": "kodexe",
   "version": "1.0.0",
   "description": "Website for learn or improve programming",
-  "main": "app.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon app.js"
