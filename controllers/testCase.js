@@ -1,42 +1,24 @@
 import { c, cpp, node, python, java } from "compile-run";
+import axios from "axios";
 
-async function test_case(timeout, language, code, input = null) {
-  let options = {
-    timeout: timeout,
+async function test_case(timeout, language, code, input = "") {
+  let version = {
+    python: "python3",
+    cpp: "cpp17",
+    c: "c",
+    java: "java",
+    csharp: "csharp",
   };
 
-  // IF INPUT
-  if (input) {
-    options.stdin = input;
-  }
+  const res = await axios.post("https://api.jdoodle.com/v1/execute", {
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    script: code,
+    stdin: input,
+    language: version[language],
+  });
 
-  let result = null;
-
-  // PYTHON
-
-  if (language == "python") {
-    result = await python.runSource(code, options);
-  }
-
-  // C
-
-  if (language == "c") {
-    result = await c.runSource(code, options);
-  }
-
-  // C++
-
-  if (language == "cpp") {
-    result = await cpp.runSource(code, options);
-  }
-
-  // JAVA
-
-  // if (language == "java") {
-  //   result = await java.runSource(code, options);
-  // }
-
-  return result;
+  return res.data;
 }
 
 export default test_case;

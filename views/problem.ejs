@@ -67,6 +67,8 @@
               <option value="python">Python</option>
               <option value="c">C</option>
               <option value="cpp">C++</option>
+              <option value="csharp">C#</option>
+              <option value="java">Java</option>
             </select>
           </div>
 
@@ -151,8 +153,6 @@
 
         if (data.error == 'Yalnış cavab') {
           s = `. Kodunuz ${data.passed} testi keçdi`;
-        } else {
-          s = " Xətası";
         }
 
         result.innerHTML = `

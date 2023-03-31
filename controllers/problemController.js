@@ -17,11 +17,7 @@ class ProblemController {
         code
       );
 
-      // console.log("RESULT ->", result);
-
       res.send(result);
-
-      //
     } catch (error) {
       res.json({
         success: false,
@@ -35,28 +31,22 @@ class ProblemController {
 
     try {
       for (let testcase of testcases) {
-        let input = testcase.input == "" ? null : testcase.input;
+        const test = await test_case(1000, language, code, testcase.input);
 
-        let test = await test_case(1000, language, code, input);
+        // console.log(test);
 
-        // console.log(test.stdout.trimEnd() == testcase.output.trimEnd());
-
-        // console.log(test.stdout.trimEnd());
-        // console.log(testcase.output.trimEnd());
-
-        // TRUE
-        if (test.stdout.trimEnd() == testcase.output.trimEnd()) {
+        if (test.output.trimEnd() == testcase.output.trimEnd()) {
           passed += 1;
-        }
-        // ERROR
-        else if ("errorType" in test) {
-          return { success: false, error: test.errorType };
-        }
-        // WRONG
-        else {
+        } else if (test.statusCode == 200) {
           return {
             success: false,
             error: "Yalnış cavab",
+            passed: passed,
+          };
+        } else {
+          return {
+            success: false,
+            error: test.output,
             passed: passed,
           };
         }
@@ -66,7 +56,7 @@ class ProblemController {
     } catch (error) {
       return {
         success: false,
-        error: "Server xətası",
+        error: "Gözlənilməz xəta. Yenidən cəhd edin.",
         passed: passed,
       };
     }
