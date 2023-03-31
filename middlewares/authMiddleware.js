@@ -94,14 +94,18 @@ class AuthMiddleware {
         next();
       } else {
         res.locals.user = null;
+        req.flash(
+          "info",
+          "İlk öncə qeydiyyatdan keçin və ya hesabınıza daxil olun"
+        );
         res.redirect("/");
       }
     } catch (error) {
       res.locals.user = null;
-      res.json({
-        success: false,
-        error: error,
-      });
+      req.flash(
+        "info",
+        "İlk öncə qeydiyyatdan keçin və ya hesabınıza daxil olun"
+      );
     }
   }
 
