@@ -14,6 +14,10 @@
           <li><a class="<%= link === "leaderboard" ? "active" : "" %>" href="/leaderboard">Lider löhvəsi</a></li>
           <li><a class="<%= link === "about" ? "active" : "" %>" href="/about">Haqqımızda</a></li>
           <li><a class="<%= link === "discuss" ? "active" : "" %>" href="/discuss">Müzakirə</a></li>
+          
+          <% if(user && user.type === "Admin"){ %>
+            <li><a class="<%= link === "admin" ? "active" : "" %>" href="/admin">Admin</a></li>
+          <% } %>
         </ul>
       </div>
 
@@ -33,6 +37,5 @@
     </nav>
   </div>
 </header>
-
 
 <script src="/js/navbar.js"></script>

@@ -104,6 +104,35 @@ class AuthMiddleware {
       });
     }
   }
+
+  static async checkAdmin(req, res, next) {
+    try {
+      const token = req.cookies.jwt;
+
+      if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+          if (err) {
+            console.log(err);
+            res.redirect("/");
+          } else {
+            const user = await User.findById(decoded.userId);
+
+            if (user.type == "Admin") {
+              // req.flash("success", "Xoş gəldin Admin!");
+              next();
+            } else {
+              res.redirect("/");
+            }
+          }
+        });
+      } else {
+        res.redirect("/");
+      }
+    } catch (error) {
+      res.redirect("/");
+      console.log(error);
+    }
+  }
 }
 
 export default AuthMiddleware;

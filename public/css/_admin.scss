@@ -1,0 +1,90 @@
+@import "colors";
+
+section#admin {
+  display: flex;
+  align-items: flex-start;
+
+  .container {
+    // margin-top: 2rem;
+    color: $dark-blue;
+    padding: 1rem 0;
+
+    h1 {
+      font-size: 1.5em;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.25em;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1em;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      input,
+      textarea {
+        font-size: 1em;
+        padding: 0.25rem 1rem;
+        margin-bottom: 0.5rem;
+        font-family: "Poppins", sans-serif;
+        outline: none;
+        border-radius: 0.25rem;
+        border: 1px solid $light-dark;
+        color: $dark-blue;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      button {
+        outline: none;
+        border: none;
+        background: $green;
+        color: $white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        font-family: "Poppins", sans-serif;
+        font-size: 1em;
+      }
+
+      .testcases,
+      .examples {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0;
+      }
+
+      .added-testcases,
+      .added-examples {
+        display: flex;
+        flex-direction: column;
+
+        .case {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 1rem;
+          margin: 0.5rem 0;
+
+          .input,
+          .output {
+            padding: 0.5rem 1rem;
+            background: $white;
+            border-radius: 0.25rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="az">
+  <!-- HEAD -->
+  <%- include("partials/_head") %>
+
+  <body>
+    <!-- HEADER -->
+    <%- include("partials/_navbar") %> <%- include("partials/_flash") %>
+
+    <!-- ADMIN -->
+
+    <section id="admin">
+      <div class="container">
+        <h1>Admin Səhifəsi</h1>
+        <form>
+          <h2>Məsələ</h2>
+          <input id="name" type="text" placeholder="Məsələnin adı" required />
+          <input
+            id="url_name"
+            type="text"
+            placeholder="Məsələnin URL adı"
+            required
+          />
+          <input id="score" type="number" placeholder="Xal" required />
+          <textarea
+            id="description"
+            placeholder="Sualın şərti"
+            required
+          ></textarea>
+
+          <textarea
+            id="constraints"
+            placeholder="Məhdudiyyətlər"
+            required
+          ></textarea>
+
+          <select id="difficulty">
+            <option value="Asan">Asan</option>
+            <option value="Orta">Orta</option>
+            <option value="Çətin">Çətin</option>
+          </select>
+
+          <div class="examples">
+            <h3>Nümunə</h3>
+            <textarea id="input" placeholder="Giriş"></textarea>
+            <textarea id="output" placeholder="Çıxış"></textarea>
+            <button type="button" id="add-example">Əlavə et</button>
+            <div class="added-examples"></div>
+          </div>
+
+          <div class="testcases">
+            <h3>Testlər</h3>
+            <textarea id="input" placeholder="Giriş"></textarea>
+            <textarea id="output" placeholder="Çıxış"></textarea>
+            <button type="button" id="add-testcase">Əlavə et</button>
+            <div class="added-testcases"></div>
+          </div>
+
+          <button type="submit">Təsdiqlə</button>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      let testcases = [];
+      let examples = [];
+
+      const add_example = document.querySelector("#add-example");
+      const add_testcase = document.querySelector("#add-testcase");
+
+      const input_e = document.querySelector(".examples #input");
+      const output_e = document.querySelector(".examples #output");
+      const added_examples = document.querySelector(".added-examples");
+
+      const input_t = document.querySelector(".testcases #input");
+      const output_t = document.querySelector(".testcases #output");
+      const added_testcases = document.querySelector(".added-testcases");
+
+      const form = document.querySelector("form");
+
+      add_example.addEventListener("click", (e) => {
+        examples.push({ input: input_e.value, output: output_e.value });
+
+        input_e.value = "";
+        output_e.value = "";
+
+        update(added_examples, examples);
+      });
+
+      add_testcase.addEventListener("click", (e) => {
+        testcases.push({ input: input_t.value, output: output_t.value });
+
+        input_t.value = "";
+        output_t.value = "";
+
+        update(added_testcases, testcases);
+      });
+
+      function update(updateElement, updateArray) {
+        updateElement.innerHTML = "";
+
+        for (let d of updateArray) {
+          updateElement.innerHTML += `
+              <div class="case">
+                <span class="input">
+                  <h4>Giriş:</h4>
+                  <span>${d.input.replace(/\n/g, "<br />")}</span>
+                </span>
+                <span class="output">
+                  <h4>Çıxış:</h4>
+                  <span>${d.output.replace(/\n/g, "<br />")}</span>
+                </span>
+              </div>
+          `;
+        }
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        let body = {
+          name: document.getElementById("name").value,
+          url_name: document.getElementById("url_name").value,
+          description: document.getElementById("description").value,
+          score: document.getElementById("score").value,
+          difficulty: document.getElementById("difficulty").value,
+          testcases: testcases,
+          examples: examples,
+        };
+
+        const res = await fetch("/admin/add_problem", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        });
+
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

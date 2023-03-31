@@ -2,19 +2,6 @@ import Problem from "../models/problemModel.js";
 import test_case from "./testCase.js";
 
 class ProblemController {
-  async createProblem(req, res) {
-    try {
-      const problem = Problem.create({ ...req.body });
-
-      // console.log(problem);
-    } catch (error) {
-      res.json({
-        success: false,
-        error: error,
-      });
-    }
-  }
-
   static async problemSolution(req, res) {
     try {
       const problemName = req.params.name;
@@ -52,7 +39,10 @@ class ProblemController {
 
         let test = await test_case(1000, language, code, input);
 
-        // console.log(test);
+        // console.log(test.stdout.trimEnd() == testcase.output.trimEnd());
+
+        // console.log(test.stdout.trimEnd());
+        // console.log(testcase.output.trimEnd());
 
         // TRUE
         if (test.stdout.trimEnd() == testcase.output.trimEnd()) {

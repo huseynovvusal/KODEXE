@@ -98,7 +98,7 @@ class PageController {
           { username: username },
           {
             score: user.score + score,
-            solved_problems: solved_problem,
+            solved_problems: [...user.solved_problems, solved_problem],
           }
         );
 
@@ -150,6 +150,17 @@ class PageController {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  static async getAdminPage(req, res) {
+    res.render("admin", {
+      link: "admin",
+      flash: {
+        success: req.flash("success"),
+        error: req.flash("error"),
+        info: req.flash("info"),
+      },
+    });
   }
 }
 

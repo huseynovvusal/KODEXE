@@ -3,6 +3,7 @@ import PageController from "../controllers/pageController.js";
 import UserController from "../controllers/userController.js";
 import AuthMiddleware from "../middlewares/authMiddleware.js";
 import problemsetRoute from "./problemsetRoute.js";
+import adminRoute from "./adminRoute.js";
 
 const router = express.Router();
 
@@ -49,6 +50,7 @@ router.post(
 );
 
 router.use("/problemset", problemsetRoute);
+router.use("/admin", adminRoute);
 
 // PROFILE
 router.get("/:username", PageController.getProfilePage);
