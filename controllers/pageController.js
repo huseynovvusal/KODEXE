@@ -136,11 +136,11 @@ class PageController {
 
   static async getLeaderboardPage(req, res) {
     try {
-      const users = await User.find();
+      const users = (await User.find().sort("score")).reverse();
 
       res.render("leaderboard", {
         link: "leaderboard",
-        users: users.sort((x) => x.score),
+        users: users,
         flash: {
           success: req.flash("success"),
           error: req.flash("error"),
